@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход - NASHA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background:#000; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; font-family:sans-serif;">
+
+    <h2>Регистрация в NASHA</h2>
+    <input type="text" id="userName" placeholder="Введите ваше имя" style="padding:15px; border-radius:10px; border:none; width:250px; margin-bottom:20px;">
+    
+    <button onclick="saveUser()" style="padding:15px 30px; border-radius:10px; border:none; background:#fff; color:#000; font-weight:bold; cursor:pointer;">СОХРАНИТЬ ПРОФИЛЬ</button>
+
+    <script>
+        function saveUser() {
+            const name = document.getElementById('userName').value;
+            if (name) {
+                // Сохраняем имя в память браузера
+                localStorage.setItem('nasha_user', name);
+                alert("Профиль сохранен: " + name);
+                window.location.href = 'index.html'; // Уходим на главную
+            } else {
+                alert("Введите имя!");
+            }
+        }
+    </script>
+</body>
+</html>
+
