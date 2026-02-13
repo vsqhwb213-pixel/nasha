@@ -1,30 +1,25 @@
-<script>
-    // Проверка "мозгов" сайта перед началом
-    const currentUser = localStorage.getItem('nasha_user');
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Studio - NASHA</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="brain.js" defer></script>
+    <script src="camera.js" defer></script>
+</head>
+<body style="background:#000; margin:0; overflow:hidden;">
 
-    if (!currentUser) {
-        alert("Ошибка: Пожалуйста, войдите в аккаунт!");
-        window.location.href = 'login.html';
-    }
+    <video id="view" autoplay playsinline style="width:100%; height:100vh; object-fit:cover;"></video>
 
-    // Когда видео загрузится на сервер Cloudinary (вставь это в onload)
-    xhr.onload = () => {
-        const res = JSON.parse(xhr.responseText);
-        if (res.secure_url) {
-            // Сохраняем видео именно под этим пользователем
-            const videoData = {
-                url: res.secure_url,
-                author: currentUser, // Тот самый "запомненный" юзер
-                date: new Date().toLocaleDateString()
-            };
-            
-            // Сохраняем в общий список проектов
-            let allVideos = JSON.parse(localStorage.getItem('nasha_projects') || '[]');
-            allVideos.push(videoData);
-            localStorage.setItem('nasha_projects', JSON.stringify(allVideos));
+    <div style="position:absolute; top:20px; width:100%; display:flex; justify-content:space-between; padding:0 20px; box-sizing:border-box;">
+        <a href="index.html" style="color:#fff; text-decoration:none; font-size:30px;">✕</a>
+        <button onclick="applyFilter('invert(1)')">Эффект</button>
+    </div>
 
-            alert(currentUser + ", твой проект сохранен!");
-            window.location.href = 'index.html';
-        }
-    };
-</script>
+    <div style="position:absolute; bottom:50px; width:100%; text-align:center;">
+        <div id="progress" style="color:white; margin-bottom:10px;"></div>
+        <button id="rec" style="width:80px; height:80px; border-radius:50%; border:5px solid #fff; background:red;"></button>
+    </div>
+
+</body>
+</html>
